@@ -1,0 +1,54 @@
+import java.util.Arrays; 
+
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        int[] sortedArr =  nums.clone();
+        Arrays.sort(sortedArr);
+        int [] finalArr = new int[2];
+        
+        for(int i=0 ;i<nums.length;i++)
+        {
+            for(int j=i+1;j<nums.length;j++)
+            {
+               int sum=sortedArr[i]+sortedArr[j];
+                if(isSum(sum,target))
+                {
+                                       
+                    finalArr[0]=findIndex(nums,sortedArr[i],-1);
+                    finalArr[1]=findIndex(nums,sortedArr[j] ,finalArr[0]);
+                    
+                   
+                    return finalArr;
+                }
+            }
+        }
+        return finalArr;
+        
+        
+    }
+    
+     public static int  findIndex (int[] my_array, int t , int s) {
+        if (my_array == null) return -1;
+        int len = my_array.length;
+        int i = 0;
+        while (i < len) {
+            if (my_array[i] == t &&i!=s)
+            {
+                return i;
+            }                
+                 i=i+1;
+                       
+        }
+        return -1;
+    }
+
+    public boolean isSum(int sum, int target)
+    {
+        if(sum==target)
+        {
+            return true;
+        }
+        
+        return false;
+    }
+}
